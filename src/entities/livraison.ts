@@ -6,7 +6,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+import { CommandeClient } from './commande-client';
 
 @Entity()
 export class Livraison extends BaseEntity {
@@ -30,6 +33,10 @@ export class Livraison extends BaseEntity {
 
   @Column()
   date_livraison?: Date;
+
+  @OneToOne(() => CommandeClient)
+  @JoinColumn({ name: 'commande_client_id' })
+  commade_client?: CommandeClient;
 
   @CreateDateColumn()
   cree_le!: Date;
