@@ -1,0 +1,13 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "",
+  "database": "gestion-commandes-api",
+  "entities": ["src/entity/*.ts"],
+  // "migrations": ["src/migration/**/*.ts"],
+  // "subscribers": ["src/subscriber/**/*.ts"],
+  "logging": true,
+  "synchronize": true
+}

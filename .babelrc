@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["@babel/preset-typescript"],
+    ["@babel/preset-env", { "targets": "defaults", "modules": "cjs", "loose": true }]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "babel-plugin-parameter-decorator",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "babel-plugin-transform-typescript-metadata",
+    ["@babel/plugin-transform-runtime"]
+  ]
+}

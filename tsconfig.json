@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["ES2020", "ESNext.AsyncIterable", "dom"],
+    "allowJs": false,
+    "rootDir": "src",
+    "strict": true,
+    // "useUnknownInCatchVariables": false,
+    "declaration": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "typeRoots": ["src/@types"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/assets/**/*"]
+}
