@@ -14,7 +14,7 @@ export enum StatusLivraison {
 }
 
 @Entity()
-export class CommandeUtilisateur extends BaseEntity {
+export class CommandeClient extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'int' })
   n_commande!: number;
 
