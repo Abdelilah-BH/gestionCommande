@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { CommandeLibrairie } from './commande-librairie';
 import { Fournisseur } from './fournisseur';
 import { Person } from './person';
@@ -10,7 +10,9 @@ export class Commercial extends Person {
 
   @ManyToOne(() => Fournisseur, (fournisseur) => fournisseur.commercials, {
     onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
+  @JoinColumn({ name: 'fournisseur_id' })
   fournisseur!: Fournisseur;
 
   @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.commercial)

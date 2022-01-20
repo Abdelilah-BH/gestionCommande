@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Commercial } from './commercial';
 import { Librairie } from './librairie';
@@ -29,13 +30,25 @@ export class CommandeLibrairie extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   commentaire?: string;
 
-  @ManyToOne(() => Librairie, (librairie) => librairie.commandes_librairie)
+  @ManyToOne(() => Librairie, (librairie) => librairie.commandes_librairie, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'librairie_id' })
   librairie?: Librairie;
 
-  @ManyToOne(() => Commercial, (commercial) => commercial.commandes_librairie)
+  @ManyToOne(() => Commercial, (commercial) => commercial.commandes_librairie, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'commercial_id' })
   commercial?: Commercial;
 
-  @ManyToOne(() => Utilisateur, (utilisateur) => utilisateur.commandes_librairie)
+  @ManyToOne(() => Utilisateur, (utilisateur) => utilisateur.commandes_librairie, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'utilisateur_id' })
   utilisateur?: Utilisateur;
 
   @CreateDateColumn()
