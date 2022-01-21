@@ -3,15 +3,19 @@ import { createConnection } from 'typeorm';
 import express from 'express';
 import path from 'path';
 
+// Use Enviroment Variables
+import dotenv from 'dotenv';
+dotenv.config();
+
 async function main() {
   try {
     await createConnection({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
+      host: process.env.HOST,
+      port: <number | undefined>process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
       password: '',
-      database: 'gestion-commandes-api',
+      database: process.env.DB_NAME,
       entities: [path.join(__dirname, `/entities/*.js`)],
       // "migrations": ["src/migration/**/*.ts"],
       // "subscribers": ["src/subscriber/**/*.ts"],
@@ -25,7 +29,7 @@ async function main() {
     app.use(express.urlencoded({ extended: true }));
     app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
-    app.listen(3000, () => console.info('prot 3000 running.'));
+    app.listen(process.env.PORT, () => console.info(`prot ${process.env.PORT} running.`));
   } catch (error) {
     console.error(error);
   }
