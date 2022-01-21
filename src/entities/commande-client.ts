@@ -8,8 +8,10 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Client } from './client';
+import { DetailCommandeClient } from './detail-commande-client';
 
 export enum StatusLivraison {
   EN_COURS = 'En cours de la livraison',
@@ -39,6 +41,9 @@ export class CommandeClient extends BaseEntity {
   @ManyToOne(() => Client, (client) => client.commandesClient)
   @JoinColumn({ name: 'client_id' })
   client?: Client;
+
+  @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.commandeClient)
+  detailCommandesClient!: DetailCommandeClient[];
 
   @CreateDateColumn()
   cree_le!: Date;

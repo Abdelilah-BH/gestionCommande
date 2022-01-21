@@ -6,7 +6,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { DetailCommandeClient } from './detail-commande-client';
 
 @Entity({ name: 'article' })
 export class Article extends BaseEntity {
@@ -33,6 +35,9 @@ export class Article extends BaseEntity {
 
   @Column()
   distributeur?: string;
+
+  @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.article)
+  detailCommandeClient!: DetailCommandeClient[];
 
   @CreateDateColumn()
   cree_le!: Date;
