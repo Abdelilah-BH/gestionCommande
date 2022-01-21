@@ -9,6 +9,8 @@ import {
   OneToMany,
 } from 'typeorm';
 import { DetailCommandeClient } from './detail-commande-client';
+import { DetailLivraison } from './detail-livraison';
+import { FournisseurArticle } from './fournisseur-article';
 
 @Entity({ name: 'article' })
 export class Article extends BaseEntity {
@@ -38,6 +40,12 @@ export class Article extends BaseEntity {
 
   @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.article)
   detailCommandeClient!: DetailCommandeClient[];
+
+  @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.article)
+  detailLivraison!: DetailLivraison[];
+
+  @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.article)
+  fournisseurArticle!: FournisseurArticle[];
 
   @CreateDateColumn()
   cree_le!: Date;

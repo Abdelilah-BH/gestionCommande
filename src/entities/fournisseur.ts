@@ -10,6 +10,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Commercial } from './commercial';
+import { FournisseurArticle } from './fournisseur-article';
 
 @Entity({ name: 'fournisseur' })
 export class Fournisseur extends BaseEntity {
@@ -29,6 +30,9 @@ export class Fournisseur extends BaseEntity {
 
   @OneToMany(() => Commercial, (commercial) => commercial.fournisseur)
   commercials?: Commercial[];
+
+  @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.fournisseur)
+  fournisseurArticle!: FournisseurArticle[];
 
   @CreateDateColumn()
   cree_le!: Date;

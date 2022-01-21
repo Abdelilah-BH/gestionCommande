@@ -8,8 +8,10 @@ import {
   DeleteDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { CommandeClient } from './commande-client';
+import { DetailLivraison } from './detail-livraison';
 
 @Entity({ name: 'livraison' })
 export class Livraison extends BaseEntity {
@@ -37,6 +39,9 @@ export class Livraison extends BaseEntity {
   @OneToOne(() => CommandeClient)
   @JoinColumn({ name: 'commande_client_id' })
   commade_client?: CommandeClient;
+
+  @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.livraison)
+  detailLivraison!: DetailLivraison[];
 
   @CreateDateColumn()
   cree_le!: Date;
