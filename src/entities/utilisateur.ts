@@ -3,7 +3,7 @@ import { CommandeLibrairie } from './commande-librairie';
 import { Person } from './person';
 import { Role } from './role';
 
-@Entity()
+@Entity({ name: 'utilisateur' })
 export class Utilisateur extends Person {
   @Column({ nullable: false })
   email!: string;

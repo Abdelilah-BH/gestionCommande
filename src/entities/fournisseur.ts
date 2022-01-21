@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { Commercial } from './commercial';
 
-@Entity()
+@Entity({ name: 'fournisseur' })
 export class Fournisseur extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;

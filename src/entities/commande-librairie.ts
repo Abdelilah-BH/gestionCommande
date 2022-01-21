@@ -13,7 +13,7 @@ import { Commercial } from './commercial';
 import { Librairie } from './librairie';
 import { Utilisateur } from './utilisateur';
 
-@Entity()
+@Entity({ name: 'commande_librairie' })
 export class CommandeLibrairie extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'int' })
   n_commande!: number;

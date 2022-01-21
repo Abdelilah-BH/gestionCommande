@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { CommandeClient } from './commande-client';
 
-@Entity()
+@Entity({ name: 'livraison' })
 export class Livraison extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;

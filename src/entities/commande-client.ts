@@ -6,14 +6,17 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { Client } from './client';
 
 export enum StatusLivraison {
   EN_COURS = 'En cours de la livraison',
   LIVRAIS = 'livrais',
 }
 
-@Entity()
+@Entity({ name: 'commande_client' })
 export class CommandeClient extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'int' })
   n_commande!: number;
@@ -32,6 +35,10 @@ export class CommandeClient extends BaseEntity {
 
   @Column({ type: 'enum', enum: StatusLivraison })
   statut_livraison?: string;
+
+  @ManyToOne(() => Client, (client) => client.commandesClient)
+  @JoinColumn({ name: 'client_id' })
+  client?: Client;
 
   @CreateDateColumn()
   cree_le!: Date;

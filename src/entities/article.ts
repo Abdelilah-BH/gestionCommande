@@ -8,7 +8,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'article' })
 export class Article extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;

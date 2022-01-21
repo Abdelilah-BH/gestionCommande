@@ -1,7 +1,7 @@
 import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { CommandeLibrairie } from './commande-librairie';
 
-@Entity()
+@Entity({ name: 'librairie' })
 export class Librairie extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
