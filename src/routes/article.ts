@@ -6,6 +6,7 @@ import {
   softDeleteArticle,
   restoreSoftDeleteArticle,
   updateArticle,
+  getSofDeleteArticles,
 } from '../controllers/article';
 import { validation } from '../functions';
 import { ArticleValidation as ValidationSchema } from '../validation/article';
@@ -14,6 +15,8 @@ import { idvalidation as IdValidationSchema } from '../validation/id';
 const router = express.Router();
 
 router.get('/', getArticles);
+
+router.get('/soft-delete', getSofDeleteArticles);
 
 router.post('/', ValidationSchema, validation, addArticle);
 
