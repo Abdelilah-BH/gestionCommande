@@ -20,7 +20,7 @@ async function main() {
       username: process.env.DB_USERNAME,
       password: '',
       database: process.env.DB_NAME,
-      entities: [path.join(__dirname, `/entities/*.js`)],
+      entities: [path.join(__dirname, `/entities/*.ts`)],
       // "migrations": ["src/migration/**/*.ts"],
       // "subscribers": ["src/subscriber/**/*.ts"],
       logging: true,

@@ -1,40 +1,43 @@
 import { checkSchema } from 'express-validator';
 
-export const AddArticlec = checkSchema({
+export const AddArticleValidation = checkSchema({
   id: {
+    optional: { options: { nullable: true } },
     in: ['params', 'query'],
     errorMessage: 'Identifient non valide',
     isInt: true,
     toInt: true,
   },
   code: {
-    isInt: true,
+    isString: true,
+    errorMessage: 'Code est obligatoire.',
     isLength: {
-      errorMessage: 'Le mot de passe doit contenir au moins 8 caractères.',
-      options: { min: 8 },
+      errorMessage: 'Code doit contenir au moins 13 caractères.',
+      options: { min: 13, max: 13 },
     },
   },
   libelle: {
     trim: true,
     isString: true,
-    notEmpty: true,
     errorMessage: 'Libelle est obligatoire.',
   },
   prix: {
     isNumeric: true,
-    notEmpty: true,
     errorMessage: 'Prix est obligatoire.',
   },
   auteurs: {
     trim: true,
     isString: true,
+    optional: { options: { nullable: true } },
   },
   editeur: {
     trim: true,
     isString: true,
+    optional: { options: { nullable: true } },
   },
   distributeur: {
     trim: true,
     isString: true,
+    optional: { options: { nullable: true } },
   },
 });
