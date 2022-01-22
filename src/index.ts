@@ -10,6 +10,7 @@ dotenv.config();
 
 // Routes
 import articleRoute from './routes/article';
+import clientRoute from './routes/client';
 
 async function main() {
   try {
@@ -37,6 +38,7 @@ async function main() {
 
     // All routes
     app.use('/api/articles', articleRoute);
+    app.use('/api/clients', clientRoute);
 
     app.listen(process.env.PORT, () => console.info(`prot ${process.env.PORT} running.`));
   } catch (error) {

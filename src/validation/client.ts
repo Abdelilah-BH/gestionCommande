@@ -8,36 +8,22 @@ export const ClientValidation = checkSchema({
     isInt: true,
     toInt: true,
   },
-  code: {
+  nom_prenom: {
     isString: true,
-    errorMessage: 'Code est obligatoire.',
-    isLength: {
-      errorMessage: 'Code doit contenir au moins 13 caractères.',
-      options: { min: 13, max: 13 },
+    errorMessage: 'Le prénom et le nom sont obligatoires.',
+    trim: true,
+  },
+  tel: {
+    isString: true,
+    errorMessage: 'Le numéro de téléphone est obligatoire.',
+    trim: true,
+  },
+  email: {
+    isString: true,
+    errorMessage: 'E-mail est obligatoire.',
+    isEmail: {
+      bail: true,
+      errorMessage: 'E-mail est invalide.',
     },
-  },
-  libelle: {
-    isString: true,
-    errorMessage: 'Libelle est obligatoire.',
-    trim: true,
-  },
-  prix: {
-    isNumeric: true,
-    errorMessage: 'Prix est obligatoire.',
-  },
-  auteurs: {
-    isString: true,
-    optional: { options: { nullable: true } },
-    trim: true,
-  },
-  editeur: {
-    isString: true,
-    optional: { options: { nullable: true } },
-    trim: true,
-  },
-  distributeur: {
-    isString: true,
-    optional: { options: { nullable: true } },
-    trim: true,
   },
 });

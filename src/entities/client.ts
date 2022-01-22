@@ -4,7 +4,7 @@ import { Person } from './person';
 
 @Entity({ name: 'client' })
 export class Client extends Person {
-  @Column({ nullable: true })
+  @Column({ unique: true })
   email?: string;
 
   @OneToMany(() => CommandeClient, (commandesClient) => commandesClient.client, {

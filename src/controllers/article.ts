@@ -24,7 +24,6 @@ export const addArticle = async (req: Request, res: Response): Promise<Response>
       return res.status(400).json({ errors: errors.array() });
     }
     const { code, libelle, prix, auteurs, editeur, distributeur } = req.body;
-    console.log(req.body);
     const article = new Article();
     article.code = code;
     article.libelle = libelle;
@@ -40,9 +39,21 @@ export const addArticle = async (req: Request, res: Response): Promise<Response>
       message: 'Article est bien ajouter.',
     });
   } catch (error) {
-    return res.status(500).json({
-      message: MSGERRORSERVER,
-    });
+    if (error instanceof Error) {
+      if (error && error['code'] === 'ER_DUP_ENTRY') {
+        return res.status(500).json({
+          message: 'Ce article existe déjà.',
+        });
+      } else {
+        return res.status(500).json({
+          message: MSGERRORSERVER,
+        });
+      }
+    } else {
+      return res.status(500).json({
+        message: MSGERRORSERVER,
+      });
+    }
   }
 };
 

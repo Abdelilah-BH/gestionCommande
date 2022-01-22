@@ -8,7 +8,8 @@ import {
   updateArticle,
 } from '../controllers/article';
 import { validation } from '../functions';
-import { ArticleValidation as ValidationSchema, idvalidation as IdValidationSchema } from '../validation/article';
+import { ArticleValidation as ValidationSchema } from '../validation/article';
+import { idvalidation as IdValidationSchema } from '../validation/id';
 
 const router = express.Router();
 
