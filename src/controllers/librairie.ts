@@ -17,6 +17,19 @@ export const getLibrairies = async (req: Request, res: Response): Promise<Respon
   }
 };
 
+export const getSofDeleteLibrairies = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const librairies = await Librairie.find({ withDeleted: true });
+    return res.json({
+      librairies,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: MSGERRORSERVER,
+    });
+  }
+};
+
 export const addLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
     const errors = validationResult(req);

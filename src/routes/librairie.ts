@@ -6,6 +6,7 @@ import {
   softDeleteLibrairie,
   restoreSoftDeleteLibrairie,
   updateLibrairie,
+  getSofDeleteLibrairies,
 } from '../controllers/librairie';
 import { validation } from '../functions';
 import { LibrairieValidation as ValidationSchema } from '../validation/librairie';
@@ -14,6 +15,8 @@ import { idvalidation as IdValidationSchema } from '../validation/id';
 const router = express.Router();
 
 router.get('/', getLibrairies);
+
+router.get('/soft-delete', getSofDeleteLibrairies);
 
 router.post('/', ValidationSchema, validation, addLibrairie);
 
