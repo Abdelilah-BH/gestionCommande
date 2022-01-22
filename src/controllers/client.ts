@@ -31,9 +31,9 @@ export const addClient = async (req: Request, res: Response): Promise<Response> 
 
     // client.image = image;
 
-    const articleCreated = await client.save();
+    const clientCreated = await client.save();
     return res.status(200).json({
-      article_created: articleCreated,
+      client_created: clientCreated,
       message: 'Client est bien ajouter.',
     });
   } catch (error) {

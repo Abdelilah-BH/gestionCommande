@@ -1,4 +1,13 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 import { CommandeLibrairie } from './commande-librairie';
 
 @Entity({ name: 'librairie' })
@@ -28,4 +37,13 @@ export class Librairie extends BaseEntity {
     cascade: true,
   })
   commandes_librairie?: CommandeLibrairie[];
+
+  @CreateDateColumn()
+  cree_le!: Date;
+
+  @UpdateDateColumn()
+  modifier_le?: Date;
+
+  @DeleteDateColumn({ nullable: true })
+  supprimer_le?: Date;
 }

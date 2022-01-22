@@ -8,9 +8,10 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Routes
+// Import routes
 import articleRoute from './routes/article';
 import clientRoute from './routes/client';
+import librairieRoute from './routes/librairie';
 
 async function main() {
   try {
@@ -39,6 +40,7 @@ async function main() {
     // All routes
     app.use('/api/articles', articleRoute);
     app.use('/api/clients', clientRoute);
+    app.use('/api/librairies', librairieRoute);
 
     app.listen(process.env.PORT, () => console.info(`prot ${process.env.PORT} running.`));
   } catch (error) {
