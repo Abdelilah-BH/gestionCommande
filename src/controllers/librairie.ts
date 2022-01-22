@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { validationResult } from 'express-validator';
 import { MSGERRORSERVER } from '../constants';
 import { Librairie } from '../entities/librairie';
 
@@ -32,10 +31,6 @@ export const getSofDeleteLibrairies = async (req: Request, res: Response): Promi
 
 export const addLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
     const { nom, telephone1, telephone2, email, ice } = req.body;
     const librairie = new Librairie();
     librairie.nom = nom;

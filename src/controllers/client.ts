@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { validationResult } from 'express-validator';
 import { MSGERRORSERVER } from '../constants';
 import { Client } from '../entities/client';
 
@@ -32,10 +31,6 @@ export const getSofDeleteClients = async (req: Request, res: Response): Promise<
 
 export const addClient = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
     const { nom_prenom, tel, email } = req.body;
     const client = new Client();
     client.nom_prenom = nom_prenom;
