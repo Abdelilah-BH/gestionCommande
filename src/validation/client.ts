@@ -1,16 +1,6 @@
 import { checkSchema } from 'express-validator';
 
-export const idvalidation = checkSchema({
-  id: {
-    optional: { options: { nullable: true } },
-    in: ['params'],
-    errorMessage: 'Identifient non valide',
-    isInt: true,
-    toInt: true,
-  },
-});
-
-export const ArticleValidation = checkSchema({
+export const ClientValidation = checkSchema({
   id: {
     optional: { options: { nullable: true } },
     in: ['params', 'query'],
