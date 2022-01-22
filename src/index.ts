@@ -13,6 +13,7 @@ import articleRoute from './routes/article';
 import clientRoute from './routes/client';
 import librairieRoute from './routes/librairie';
 import commercialRoute from './routes/commercial';
+import fournisseurRoute from './routes/fournisseur';
 
 async function main() {
   try {
@@ -43,6 +44,7 @@ async function main() {
     app.use('/api/clients', clientRoute);
     app.use('/api/librairies', librairieRoute);
     app.use('/api/commercials', commercialRoute);
+    app.use('/api/fournisseurs', fournisseurRoute);
 
     app.listen(process.env.PORT, () => console.info(`prot ${process.env.PORT} running.`));
   } catch (error) {
