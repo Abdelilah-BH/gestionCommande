@@ -2,10 +2,14 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import express from 'express';
 import path from 'path';
+import cookieParser from 'cookie-parser';
 
 // Use Enviroment Variables
 import dotenv from 'dotenv';
 dotenv.config();
+
+// Routes
+import articleRoute from './routes/article';
 
 async function main() {
   try {
@@ -27,7 +31,12 @@ async function main() {
     const app = express();
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    app.use(cookieParser());
+
     app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+    // All routes
+    app.use('/api/articles', articleRoute);
 
     app.listen(process.env.PORT, () => console.info(`prot ${process.env.PORT} running.`));
   } catch (error) {
