@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
+import { MSGERRORSERVER } from '../constants';
 import { Article } from '../entities/article';
 
 export const getArticles = async (req: Request, res: Response): Promise<Response> => {
@@ -7,12 +8,11 @@ export const getArticles = async (req: Request, res: Response): Promise<Response
     const articles = await Article.find();
     return res.json({
       articles,
-      message: 'Successfuly.',
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      message: "Une erreur de serveur s'est produite .",
+      message: MSGERRORSERVER,
     });
   }
 };
@@ -34,14 +34,15 @@ export const addArticle = async (req: Request, res: Response): Promise<Response>
     article.distributeur = distributeur;
     // article.image = image;
 
-    await article.save();
+    const articleCreated = await article.save();
     return res.status(200).json({
-      message: 'Successfuly.',
+      article_created: articleCreated,
+      message: 'Article est bien ajouter.',
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      message: "Une erreur de serveur s'est produite .",
+      message: MSGERRORSERVER,
     });
   }
 };

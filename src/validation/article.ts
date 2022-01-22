@@ -17,27 +17,27 @@ export const AddArticleValidation = checkSchema({
     },
   },
   libelle: {
-    trim: true,
     isString: true,
     errorMessage: 'Libelle est obligatoire.',
+    trim: true,
   },
   prix: {
     isNumeric: true,
     errorMessage: 'Prix est obligatoire.',
   },
   auteurs: {
-    trim: true,
     isString: true,
     optional: { options: { nullable: true } },
+    trim: true,
   },
   editeur: {
-    trim: true,
     isString: true,
     optional: { options: { nullable: true } },
+    trim: true,
   },
   distributeur: {
-    trim: true,
     isString: true,
     optional: { options: { nullable: true } },
+    trim: true,
   },
 });
