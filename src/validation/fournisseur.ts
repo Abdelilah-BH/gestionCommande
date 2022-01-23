@@ -10,7 +10,7 @@ export const FournisseurValidation = checkSchema({
   },
   raison_sociale: {
     isString: true,
-    errorMessage: 'Le prénom et le nom sont obligatoires.',
+    errorMessage: 'Le raison sociale est obligatoires.',
     trim: true,
   },
   tel: {

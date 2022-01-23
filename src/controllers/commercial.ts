@@ -18,7 +18,7 @@ export const getCommercials = async (req: Request, res: Response): Promise<Respo
 
 export const getSofDeleteCommercials = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commercials = await Commercial.find({ withDeleted: true });
+    const commercials = await Commercial.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
     return res.json({
       commercials,
     });
@@ -36,7 +36,6 @@ export const addCommercial = async (req: Request, res: Response): Promise<Respon
     commercial.nom_prenom = nom_prenom;
     commercial.tel = tel;
     commercial.email = email;
-    // commercial.image = image;
 
     const commercialCreated = await commercial.save();
     return res.status(200).json({

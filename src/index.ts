@@ -14,6 +14,7 @@ import clientRoute from './routes/client';
 import librairieRoute from './routes/librairie';
 import commercialRoute from './routes/commercial';
 import fournisseurRoute from './routes/fournisseur';
+import livraisonRoute from './routes/livraison';
 
 async function main() {
   try {
@@ -45,6 +46,7 @@ async function main() {
     app.use('/api/librairies', librairieRoute);
     app.use('/api/commercials', commercialRoute);
     app.use('/api/fournisseurs', fournisseurRoute);
+    app.use('/api/livraisons', livraisonRoute);
 
     app.listen(process.env.PORT, () => console.info(`prot ${process.env.PORT} running.`));
   } catch (error) {

@@ -18,7 +18,7 @@ export const getLibrairies = async (req: Request, res: Response): Promise<Respon
 
 export const getSofDeleteLibrairies = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const librairies = await Librairie.find({ withDeleted: true });
+    const librairies = await Librairie.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
     return res.json({
       librairies,
     });
