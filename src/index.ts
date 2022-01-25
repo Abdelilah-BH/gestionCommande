@@ -16,6 +16,7 @@ import commercialRoute from './routes/commercial';
 import fournisseurRoute from './routes/fournisseur';
 import livraisonRoute from './routes/livraison';
 import utilisateurRoute from './routes/utilisateur';
+import CommandeClient from './routes/commande-client';
 
 async function main() {
   try {
@@ -49,6 +50,7 @@ async function main() {
     app.use('/api/fournisseurs', fournisseurRoute);
     app.use('/api/livraisons', livraisonRoute);
     app.use('/api/utilisateurs', utilisateurRoute);
+    app.use('/api/commande-clients', CommandeClient);
 
     app.listen(process.env.PORT, () => console.info(`prot ${process.env.PORT} running.`));
   } catch (error) {
