@@ -29,10 +29,15 @@ async function main() {
       password: '',
       database: process.env.DB_NAME,
       entities: [path.join(__dirname, `/entities/*.ts`)],
-      // migrations: [path.join(__dirname, `/migrations/*.ts`)],
+      migrationsTableName: 'migration_table',
+      migrations: [`./src/migration/**/*.ts`],
+      cli: {
+        migrationsDir: './src/migration',
+      },
       // "subscribers": ["src/subscriber/**/*.ts"],
       logging: true,
-      synchronize: true,
+      migrationsRun: true,
+      // synchronize: true,
     });
     console.info('database connected');
 

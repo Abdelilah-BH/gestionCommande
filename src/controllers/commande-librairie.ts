@@ -31,13 +31,12 @@ export const getSofDeleteCommandeLibrairies = async (req: Request, res: Response
 
 export const addCommandeLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const { avance, commentaire, montant, avec_livraison, statut_livraison } = req.body;
+    const { commentaire, montant, date_envoi_cmd, date_fin_cmd } = req.body;
     const commandeLibrairie = new CommandeLibrairie();
-    commandeLibrairie.avance = avance;
     commandeLibrairie.commentaire = commentaire;
     commandeLibrairie.montant = montant;
-    commandeLibrairie.avec_livraison = avec_livraison;
-    commandeLibrairie.statut_livraison = statut_livraison;
+    commandeLibrairie.date_envoi_cmd = date_envoi_cmd;
+    commandeLibrairie.date_fin_cmd = date_fin_cmd;
 
     const commandeLibrairieCreated = await commandeLibrairie.save();
     return res.status(200).json({

@@ -1,26 +1,26 @@
-import { Entity, Column, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn, JoinColumn, BaseEntity } from 'typeorm';
 import { Article } from './article';
 import { Fournisseur } from './fournisseur';
 
 @Entity({ name: 'fournisseur_article' })
-export class FournisseurArticle {
+export class FournisseurArticle extends BaseEntity {
   @PrimaryGeneratedColumn()
-  public id!: number;
+  id!: number;
 
   @Column({ name: 'fournisseur_id' })
-  public fournisseurId!: number;
+  fournisseurId!: number;
 
   @Column({ name: 'article_id' })
-  public articleId!: number;
+  articleId!: number;
 
   @Column({ type: 'int' })
-  public quantite_livre!: number;
+  quantite_livre!: number;
 
   @ManyToOne(() => Fournisseur, (fournisseur) => fournisseur.fournisseurArticle)
   @JoinColumn({ name: 'fournisseur_id' })
-  public fournisseur!: Fournisseur;
+  fournisseur!: Fournisseur;
 
   @ManyToOne(() => Article, (article) => article.fournisseurArticle)
   @JoinColumn({ name: 'article_id' })
-  public article!: Article;
+  article!: Article;
 }
