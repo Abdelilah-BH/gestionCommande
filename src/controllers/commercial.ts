@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { getDataByPagination } from '.';
 import { MSGERRORSERVER } from '../constants';
 import { Commercial } from '../entities/commercial';
 
 export const getCommercials = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commercials = await Commercial.find({ withDeleted: false });
+    const commercials = await getDataByPagination(req, res, Commercial);
     return res.json({
       commercials,
     });

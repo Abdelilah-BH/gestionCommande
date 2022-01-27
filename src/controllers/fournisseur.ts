@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { getDataByPagination } from '.';
 import { MSGERRORSERVER } from '../constants';
 import { Fournisseur } from '../entities/fournisseur';
 
 export const getFournisseurs = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const fournisseurs = await Fournisseur.find({ withDeleted: false });
+    const fournisseurs = await getDataByPagination(req, res, Fournisseur);
     return res.json({
       fournisseurs,
     });

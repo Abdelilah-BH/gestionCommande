@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { getDataByPagination } from '.';
 import { MSGERRORSERVER } from '../constants';
 import { Utilisateur } from '../entities/utilisateur';
 
 export const getUtilisateurs = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const utilisateurs = await Utilisateur.find({ withDeleted: false });
+    const utilisateurs = await getDataByPagination(req, res, Utilisateur);
     return res.json({
       utilisateurs,
     });

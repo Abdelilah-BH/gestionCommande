@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { getDataByPagination } from '.';
 import { MSGERRORSERVER } from '../constants';
 import { Librairie } from '../entities/librairie';
 
 export const getLibrairies = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const librairies = await Librairie.find({ withDeleted: false });
+    const librairies = await getDataByPagination(req, res, Librairie);
     return res.json({
       librairies,
     });
