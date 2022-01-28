@@ -3,6 +3,7 @@ import { createConnection } from 'typeorm';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 // Use Enviroment Variables
 import dotenv from 'dotenv';
@@ -42,6 +43,8 @@ async function main() {
     console.info('database connected');
 
     const app = express();
+    app.use(cors());
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());

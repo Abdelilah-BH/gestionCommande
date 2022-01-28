@@ -17,7 +17,7 @@ export const getDataByPagination = async ({
   where,
 }: IGetDataByPaginationProps) => {
   const page: number = parseInt(req.query.page as string) || 1;
-  const perPage: number = parseInt(req.query.perPage as string) || 10;
+  const perPage: number = parseInt(req.query.perPage as string) || 50;
   const data = await entity.find({
     withDeleted: withDeleted,
     skip: (page - 1) * perPage,
