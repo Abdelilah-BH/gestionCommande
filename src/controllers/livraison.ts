@@ -6,7 +6,7 @@ import { Livraison } from '../entities/livraison';
 
 export const getLivraisons = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const livraisons = await getDataByPagination(req, res, Livraison);
+    const livraisons = await getDataByPagination({ req, _: res, entity: Livraison });
     return res.json({
       livraisons,
     });
@@ -19,7 +19,13 @@ export const getLivraisons = async (req: Request, res: Response): Promise<Respon
 
 export const getSofDeleteLivraisons = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const livraisons = await Livraison.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const livraisons = await getDataByPagination({
+      req,
+      _: res,
+      entity: Livraison,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
     return res.json({
       livraisons,
     });

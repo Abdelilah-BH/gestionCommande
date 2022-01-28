@@ -6,7 +6,7 @@ import { getDataByPagination } from '.';
 
 export const getArticles = async (req: Request, res: Response) => {
   try {
-    const articles = await getDataByPagination(req, res, Article);
+    const articles = await getDataByPagination({ req, _: res, entity: Article });
     return res.json({
       articles,
     });
@@ -19,7 +19,13 @@ export const getArticles = async (req: Request, res: Response) => {
 
 export const getSofDeleteArticles = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const articles = await Article.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const articles = await getDataByPagination({
+      req,
+      _: res,
+      entity: Article,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
     return res.json({
       articles,
     });

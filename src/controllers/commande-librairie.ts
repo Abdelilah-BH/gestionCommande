@@ -6,7 +6,7 @@ import { CommandeLibrairie } from '../entities/commande-librairie';
 
 export const getCommandeLibrairies = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commandeLibrairies = await getDataByPagination(req, res, CommandeLibrairie);
+    const commandeLibrairies = await getDataByPagination({ req, _: res, entity: CommandeLibrairie });
     return res.json({
       commandeLibrairies,
     });
@@ -19,7 +19,13 @@ export const getCommandeLibrairies = async (req: Request, res: Response): Promis
 
 export const getSofDeleteCommandeLibrairies = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commandeLibrairies = await CommandeLibrairie.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const commandeLibrairies = await getDataByPagination({
+      req,
+      _: res,
+      entity: CommandeLibrairie,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
     return res.json({
       commandeLibrairies,
     });

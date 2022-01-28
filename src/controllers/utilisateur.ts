@@ -6,7 +6,7 @@ import { Utilisateur } from '../entities/utilisateur';
 
 export const getUtilisateurs = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const utilisateurs = await getDataByPagination(req, res, Utilisateur);
+    const utilisateurs = await getDataByPagination({ req, _: res, entity: Utilisateur });
     return res.json({
       utilisateurs,
     });
@@ -19,7 +19,14 @@ export const getUtilisateurs = async (req: Request, res: Response): Promise<Resp
 
 export const getSofDeleteUtilisateurs = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const utilisateurs = await Utilisateur.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const utilisateurs = await getDataByPagination({
+      req,
+      _: res,
+      entity: Utilisateur,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
+
     return res.json({
       utilisateurs,
     });

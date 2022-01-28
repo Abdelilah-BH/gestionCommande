@@ -6,7 +6,7 @@ import { CommandeClient } from '../entities/commande-client';
 
 export const getCommandeClients = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commandeClients = await getDataByPagination(req, res, CommandeClient);
+    const commandeClients = await getDataByPagination({ req, _: res, entity: CommandeClient });
     return res.json({
       commandeClients,
     });
@@ -19,7 +19,13 @@ export const getCommandeClients = async (req: Request, res: Response): Promise<R
 
 export const getSofDeleteCommandeClients = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commandeClients = await CommandeClient.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const commandeClients = await getDataByPagination({
+      req,
+      _: res,
+      entity: CommandeClient,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
     return res.json({
       commandeClients,
     });

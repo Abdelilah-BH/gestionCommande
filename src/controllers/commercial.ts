@@ -6,7 +6,7 @@ import { Commercial } from '../entities/commercial';
 
 export const getCommercials = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commercials = await getDataByPagination(req, res, Commercial);
+    const commercials = await getDataByPagination({ req, _: res, entity: Commercial });
     return res.json({
       commercials,
     });
@@ -19,7 +19,13 @@ export const getCommercials = async (req: Request, res: Response): Promise<Respo
 
 export const getSofDeleteCommercials = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const commercials = await Commercial.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const commercials = await getDataByPagination({
+      req,
+      _: res,
+      entity: Commercial,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
     return res.json({
       commercials,
     });

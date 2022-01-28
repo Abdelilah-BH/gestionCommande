@@ -6,7 +6,7 @@ import { Librairie } from '../entities/librairie';
 
 export const getLibrairies = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const librairies = await getDataByPagination(req, res, Librairie);
+    const librairies = await getDataByPagination({ req, _: res, entity: Librairie });
     return res.json({
       librairies,
     });
@@ -19,7 +19,13 @@ export const getLibrairies = async (req: Request, res: Response): Promise<Respon
 
 export const getSofDeleteLibrairies = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const librairies = await Librairie.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const librairies = await getDataByPagination({
+      req,
+      _: res,
+      entity: Librairie,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
     return res.json({
       librairies,
     });

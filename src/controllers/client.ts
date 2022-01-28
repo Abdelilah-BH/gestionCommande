@@ -6,7 +6,7 @@ import { Client } from '../entities/client';
 
 export const getClients = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const clients = await getDataByPagination(req, res, Client);
+    const clients = await getDataByPagination({ req, _: res, entity: Client });
     return res.json({
       clients,
     });
@@ -19,7 +19,13 @@ export const getClients = async (req: Request, res: Response): Promise<Response>
 
 export const getSofDeleteClients = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const clients = await Client.find({ withDeleted: true, where: 'supprimer_le IS NOT NULL' });
+    const clients = await getDataByPagination({
+      req,
+      _: res,
+      entity: Client,
+      withDeleted: true,
+      where: 'supprimer_le IS NOT NULL',
+    });
     return res.json({
       clients,
     });
