@@ -25,5 +25,6 @@ export const getDataByPagination = async ({
     order: { cree_le: 'DESC' },
     where: where,
   });
-  return data;
+  const count = await entity.count();
+  return { data, count };
 };
