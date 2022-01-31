@@ -90,7 +90,11 @@ export const updateCommandeLibrairie = async (req: Request, res: Response): Prom
 
 export const deleteCommandeLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(CommandeLibrairie).createQueryBuilder().where('id = :id', { id: req.params.id }).delete().execute();
+    getRepository(CommandeLibrairie)
+      .createQueryBuilder()
+      .delete()
+      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .execute();
     return res.status(200).json({
       message: 'CommandeLibrairie est bien supprimé définitivement.',
     });
@@ -105,8 +109,8 @@ export const softDeleteCommandeLibrairie = async (req: Request, res: Response): 
   try {
     getRepository(CommandeLibrairie)
       .createQueryBuilder()
-      .where('id = :id', { id: req.params.id })
       .softDelete()
+      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
       .execute();
     return res.status(200).json({
       message: 'Commande librairie est bien supprimé.',
@@ -121,7 +125,11 @@ export const softDeleteCommandeLibrairie = async (req: Request, res: Response): 
 
 export const restoreSoftDeleteCommandeLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(CommandeLibrairie).createQueryBuilder().where('id = :id', { id: req.params.id }).restore().execute();
+    getRepository(CommandeLibrairie)
+      .createQueryBuilder()
+      .restore()
+      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .execute();
     return res.status(200).json({
       message: 'Commande librairie ont bien été restaurés.',
     });

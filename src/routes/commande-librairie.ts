@@ -22,10 +22,10 @@ router.post('/', ValidationSchema, validation, addCommandeLibrairie);
 
 router.patch('/update/:id', ValidationSchema, validation, updateCommandeLibrairie);
 
-router.delete('/delete/:id', IdValidationSchema, validation, deleteCommandeLibrairie);
+router.delete('/delete', IdValidationSchema, validation, deleteCommandeLibrairie);
 
-router.post('/soft-delete/:id', IdValidationSchema, validation, softDeleteCommandeLibrairie);
+router.post('/soft-delete', IdValidationSchema, validation, softDeleteCommandeLibrairie);
 
-router.post('/restore-soft-delete/:id', IdValidationSchema, validation, restoreSoftDeleteCommandeLibrairie);
+router.post('/restore-soft-delete', IdValidationSchema, validation, restoreSoftDeleteCommandeLibrairie);
 
 export default router;

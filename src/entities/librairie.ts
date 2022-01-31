@@ -34,8 +34,7 @@ export class Librairie extends BaseEntity {
   ice!: string;
 
   @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.librairie, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   commandes_librairie?: CommandeLibrairie[];
 

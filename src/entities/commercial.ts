@@ -16,8 +16,7 @@ export class Commercial extends Person {
   fournisseur!: Fournisseur;
 
   @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.commercial, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   commandes_librairie?: CommandeLibrairie[];
 }

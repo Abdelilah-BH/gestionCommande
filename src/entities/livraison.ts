@@ -41,8 +41,7 @@ export class Livraison extends BaseEntity {
   commade_client?: CommandeClient;
 
   @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.livraison, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   detailLivraison!: DetailLivraison[];
 

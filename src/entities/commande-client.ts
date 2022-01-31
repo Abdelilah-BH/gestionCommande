@@ -38,13 +38,15 @@ export class CommandeClient extends BaseEntity {
   @Column({ type: 'enum', enum: StatusLivraison })
   statut_livraison?: string;
 
-  @ManyToOne(() => Client, (client) => client.commandesClient)
+  @ManyToOne(() => Client, (client) => client.commandesClient, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'client_id' })
   client?: Client;
 
   @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.commandeClient, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   detailCommandesClient!: DetailCommandeClient[];
 

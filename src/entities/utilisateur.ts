@@ -9,8 +9,7 @@ export class Utilisateur extends Person {
   email!: string;
 
   @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.cree_le, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   commandes_librairie?: CommandeLibrairie[];
 

@@ -22,10 +22,10 @@ router.post('/', ValidationSchema, validation, addClient);
 
 router.patch('/update/:id', ValidationSchema, validation, updateClient);
 
-router.delete('/delete/:id', IdValidationSchema, validation, deleteClient);
+router.delete('/delete', IdValidationSchema, validation, deleteClient);
 
-router.post('/soft-delete/:id', IdValidationSchema, validation, softDeleteClient);
+router.post('/soft-delete', IdValidationSchema, validation, softDeleteClient);
 
-router.post('/restore-soft-delete/:id', IdValidationSchema, validation, restoreSoftDeleteClient);
+router.post('/restore-soft-delete', IdValidationSchema, validation, restoreSoftDeleteClient);
 
 export default router;

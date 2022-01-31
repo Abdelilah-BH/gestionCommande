@@ -28,12 +28,13 @@ export class Fournisseur extends BaseEntity {
   @Column({ nullable: true })
   tel?: string;
 
-  @OneToMany(() => Commercial, (commercial) => commercial.fournisseur)
+  @OneToMany(() => Commercial, (commercial) => commercial.fournisseur, {
+    cascade: true,
+  })
   commercials?: Commercial[];
 
   @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.fournisseur, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   fournisseurArticle!: FournisseurArticle[];
 

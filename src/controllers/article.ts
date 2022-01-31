@@ -74,8 +74,7 @@ export const addArticle = async (req: Request, res: Response): Promise<Response>
 
 export const updateArticle = async (req: Request, res: Response): Promise<Response> => {
   try {
-    console.log(req.body);
-    getRepository(Article)
+    await getRepository(Article)
       .createQueryBuilder()
       .update()
       .set(req.body)
@@ -96,10 +95,10 @@ export const deleteArticle = async (req: Request, res: Response): Promise<Respon
     await getRepository(Article)
       .createQueryBuilder()
       .delete()
-      .where('id IN(:...id)', { id: [req.params.id] })
+      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
       .execute();
     return res.status(200).json({
-      message: 'Article est bien supprimé définitivement.',
+      message: `Article est bien supprimé définitivement.`,
     });
   } catch (error) {
     return res.status(500).json({
@@ -110,7 +109,11 @@ export const deleteArticle = async (req: Request, res: Response): Promise<Respon
 
 export const softDeleteArticle = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Article).createQueryBuilder().where('id = :id', { id: req.params.id }).softDelete().execute();
+    await getRepository(Article)
+      .createQueryBuilder()
+      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .softDelete()
+      .execute();
     return res.status(200).json({
       message: 'Article est bien supprimé.',
     });
@@ -124,7 +127,11 @@ export const softDeleteArticle = async (req: Request, res: Response): Promise<Re
 
 export const restoreSoftDeleteArticle = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Article).createQueryBuilder().where('id = :id', { id: req.params.id }).restore().execute();
+    await getRepository(Article)
+      .createQueryBuilder()
+      .restore()
+      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .execute();
     return res.status(200).json({
       message: "L'article ont bien été restaurés.",
     });

@@ -16,11 +16,17 @@ export class DetailLivraison {
   @Column({ type: 'int' })
   public quantite_livre!: number;
 
-  @ManyToOne(() => Livraison, (livraison) => livraison.detailLivraison)
+  @ManyToOne(() => Livraison, (livraison) => livraison.detailLivraison, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'livraison_id' })
   public livraison!: Livraison;
 
-  @ManyToOne(() => Article, (article) => article.detailLivraison)
+  @ManyToOne(() => Article, (article) => article.detailLivraison, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'article_id' })
   public article!: Article;
 }

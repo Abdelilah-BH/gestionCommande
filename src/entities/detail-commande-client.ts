@@ -25,11 +25,17 @@ export class DetailCommandeClient {
   @Column({ type: 'int' })
   public remise?: number;
 
-  @ManyToOne(() => CommandeClient, (commandeClient) => commandeClient.detailCommandesClient)
+  @ManyToOne(() => CommandeClient, (commandeClient) => commandeClient.detailCommandesClient, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'commande_client_id' })
   public commandeClient!: CommandeClient;
 
-  @ManyToOne(() => Article, (article) => article.detailCommandeClient)
+  @ManyToOne(() => Article, (article) => article.detailCommandeClient, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'article_id' })
   public article!: Article;
 }

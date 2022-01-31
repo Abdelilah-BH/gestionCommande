@@ -7,8 +7,7 @@ export class Role extends BaseEntity {
   id!: number;
 
   @OneToMany(() => Utilisateur, (utilisateur) => utilisateur.role, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   utilisateurs?: Utilisateur[];
 

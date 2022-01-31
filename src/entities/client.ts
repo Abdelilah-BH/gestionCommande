@@ -8,8 +8,7 @@ export class Client extends Person {
   email?: string;
 
   @OneToMany(() => CommandeClient, (commandesClient) => commandesClient.client, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   commandesClient?: CommandeClient[];
 }

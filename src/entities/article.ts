@@ -39,20 +39,17 @@ export class Article extends BaseEntity {
   distributeur?: string;
 
   @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.article, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   detailCommandeClient!: DetailCommandeClient[];
 
   @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.article, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   detailLivraison!: DetailLivraison[];
 
   @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.article, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    cascade: true,
   })
   fournisseurArticle!: FournisseurArticle[];
 

@@ -16,11 +16,17 @@ export class FournisseurArticle extends BaseEntity {
   @Column({ type: 'int' })
   quantite_livre!: number;
 
-  @ManyToOne(() => Fournisseur, (fournisseur) => fournisseur.fournisseurArticle)
+  @ManyToOne(() => Fournisseur, (fournisseur) => fournisseur.fournisseurArticle, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'fournisseur_id' })
   fournisseur!: Fournisseur;
 
-  @ManyToOne(() => Article, (article) => article.fournisseurArticle)
+  @ManyToOne(() => Article, (article) => article.fournisseurArticle, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'article_id' })
   article!: Article;
 }
