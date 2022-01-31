@@ -8,7 +8,7 @@ export class librairiemig1643281317351 implements MigrationInterface {
     // eslint-disable-next-line no-loops/no-loops
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     // eslint-disable-next-line no-loops/no-loops
-    for (const _ of Array.from({ length: 100 })) {
+    for (const _ of Array.from({ length: 300 })) {
       const librairie = new Librairie();
       librairie.nom = faker.company.companyName();
       librairie.telephone1 = faker.finance.account(10);

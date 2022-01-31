@@ -8,7 +8,7 @@ export class clientmig1643280256041 implements MigrationInterface {
     // eslint-disable-next-line no-loops/no-loops
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     // eslint-disable-next-line no-loops/no-loops
-    for (const _ of Array.from({ length: 100 })) {
+    for (const _ of Array.from({ length: 300 })) {
       const client = new Client();
       client.nom_prenom = faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}');
       client.tel = faker.finance.account(10);

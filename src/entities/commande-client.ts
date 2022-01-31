@@ -42,7 +42,10 @@ export class CommandeClient extends BaseEntity {
   @JoinColumn({ name: 'client_id' })
   client?: Client;
 
-  @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.commandeClient)
+  @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.commandeClient, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   detailCommandesClient!: DetailCommandeClient[];
 
   @CreateDateColumn()

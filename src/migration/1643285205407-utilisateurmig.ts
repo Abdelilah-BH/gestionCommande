@@ -8,7 +8,7 @@ export class utilisateurmig1643285205407 implements MigrationInterface {
     // eslint-disable-next-line no-loops/no-loops
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     // eslint-disable-next-line no-loops/no-loops
-    for (const _ of Array.from({ length: 100 })) {
+    for (const _ of Array.from({ length: 300 })) {
       const utilisateur = new Utilisateur();
       utilisateur.nom_prenom = faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}');
       utilisateur.tel = faker.finance.account(10);

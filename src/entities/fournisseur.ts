@@ -17,7 +17,7 @@ export class Fournisseur extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ unique: true })
+  @Column()
   raison_sociale!: string;
   @Column({ unique: true, nullable: true })
   email?: string;
@@ -31,7 +31,10 @@ export class Fournisseur extends BaseEntity {
   @OneToMany(() => Commercial, (commercial) => commercial.fournisseur)
   commercials?: Commercial[];
 
-  @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.fournisseur)
+  @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.fournisseur, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   fournisseurArticle!: FournisseurArticle[];
 
   @CreateDateColumn()

@@ -40,7 +40,10 @@ export class Livraison extends BaseEntity {
   @JoinColumn({ name: 'commande_client_id' })
   commade_client?: CommandeClient;
 
-  @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.livraison)
+  @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.livraison, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   detailLivraison!: DetailLivraison[];
 
   @CreateDateColumn()

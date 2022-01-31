@@ -10,7 +10,7 @@ export class fournisseurmig1643281750175 implements MigrationInterface {
     // eslint-disable-next-line no-loops/no-loops
     for (const _ of Array.from({ length: 100 })) {
       const fournisseur = new Fournisseur();
-      fournisseur.raison_sociale = faker.company.companyName();
+      fournisseur.raison_sociale = faker.name.findName();
       fournisseur.tel = faker.finance.account(10);
       fournisseur.email = faker.internet.email();
       fournisseur.ice = faker.finance.account(15);

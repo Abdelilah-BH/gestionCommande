@@ -8,7 +8,10 @@ export class Utilisateur extends Person {
   @Column({ nullable: false })
   email!: string;
 
-  @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.cree_le)
+  @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.cree_le, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   commandes_librairie?: CommandeLibrairie[];
 
   @ManyToOne(() => Role, (role) => role.utilisateurs, {

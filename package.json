@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc --noEmit",
+    "typeorm": "node --require ./node_modules/typeorm/cli.js",
     "tsc:watch": "tsc --noEmit -w",
     "lint": "node_modules/.bin/ls-lint && eslint src/**/* --ext .ts",
     "lint:fix": "eslint src/**/* --ext .ts --fix",

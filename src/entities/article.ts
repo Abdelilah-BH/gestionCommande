@@ -38,13 +38,22 @@ export class Article extends BaseEntity {
   @Column()
   distributeur?: string;
 
-  @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.article)
+  @OneToMany(() => DetailCommandeClient, (detailCommandeClient) => detailCommandeClient.article, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   detailCommandeClient!: DetailCommandeClient[];
 
-  @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.article)
+  @OneToMany(() => DetailLivraison, (detailLivraison) => detailLivraison.article, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   detailLivraison!: DetailLivraison[];
 
-  @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.article)
+  @OneToMany(() => FournisseurArticle, (fournisseurArticle) => fournisseurArticle.article, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   fournisseurArticle!: FournisseurArticle[];
 
   @CreateDateColumn()

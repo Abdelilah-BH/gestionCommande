@@ -93,7 +93,11 @@ export const updateArticle = async (req: Request, res: Response): Promise<Respon
 
 export const deleteArticle = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Article).createQueryBuilder().where('id = :id', { id: req.params.id }).delete().execute();
+    await getRepository(Article)
+      .createQueryBuilder()
+      .delete()
+      .where('id IN(:...id)', { id: [req.params.id] })
+      .execute();
     return res.status(200).json({
       message: 'Article est bien supprimé définitivement.',
     });

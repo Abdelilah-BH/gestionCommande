@@ -15,6 +15,9 @@ export class Commercial extends Person {
   @JoinColumn({ name: 'fournisseur_id' })
   fournisseur!: Fournisseur;
 
-  @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.commercial)
+  @OneToMany(() => CommandeLibrairie, (commande_librairie) => commande_librairie.commercial, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   commandes_librairie?: CommandeLibrairie[];
 }
