@@ -89,11 +89,7 @@ export const updateCommercial = async (req: Request, res: Response): Promise<Res
 
 export const deleteCommercial = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Commercial)
-      .createQueryBuilder()
-      .delete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Commercial).createQueryBuilder().delete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Commercial est bien supprimé définitivement.',
     });
@@ -106,11 +102,7 @@ export const deleteCommercial = async (req: Request, res: Response): Promise<Res
 
 export const softDeleteCommercial = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Commercial)
-      .createQueryBuilder()
-      .softDelete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Commercial).createQueryBuilder().softDelete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Commercial est bien supprimé.',
     });
@@ -124,11 +116,7 @@ export const softDeleteCommercial = async (req: Request, res: Response): Promise
 
 export const restoreSoftDeleteCommercial = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Commercial)
-      .createQueryBuilder()
-      .restore()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Commercial).createQueryBuilder().restore().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: "L'commercial ont bien été restaurés.",
     });

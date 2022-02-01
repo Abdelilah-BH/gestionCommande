@@ -90,11 +90,7 @@ export const updateLivraison = async (req: Request, res: Response): Promise<Resp
 
 export const deleteLivraison = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Livraison)
-      .createQueryBuilder()
-      .delete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Livraison).createQueryBuilder().delete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Livraison est bien supprimé définitivement.',
     });
@@ -107,11 +103,7 @@ export const deleteLivraison = async (req: Request, res: Response): Promise<Resp
 
 export const softDeleteLivraison = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Livraison)
-      .createQueryBuilder()
-      .softDelete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Livraison).createQueryBuilder().softDelete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Livraison est bien supprimé.',
     });
@@ -125,11 +117,7 @@ export const softDeleteLivraison = async (req: Request, res: Response): Promise<
 
 export const restoreSoftDeleteLivraison = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Livraison)
-      .createQueryBuilder()
-      .restore()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Livraison).createQueryBuilder().restore().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: "L'livraison ont bien été restaurés.",
     });

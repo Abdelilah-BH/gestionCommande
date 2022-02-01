@@ -93,7 +93,7 @@ export const deleteCommandeLibrairie = async (req: Request, res: Response): Prom
     getRepository(CommandeLibrairie)
       .createQueryBuilder()
       .delete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .where('id IN(:...id)', { id: req.body.ids })
       .execute();
     return res.status(200).json({
       message: 'CommandeLibrairie est bien supprimé définitivement.',
@@ -110,7 +110,7 @@ export const softDeleteCommandeLibrairie = async (req: Request, res: Response): 
     getRepository(CommandeLibrairie)
       .createQueryBuilder()
       .softDelete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .where('id IN(:...id)', { id: req.body.ids })
       .execute();
     return res.status(200).json({
       message: 'Commande librairie est bien supprimé.',
@@ -128,7 +128,7 @@ export const restoreSoftDeleteCommandeLibrairie = async (req: Request, res: Resp
     getRepository(CommandeLibrairie)
       .createQueryBuilder()
       .restore()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .where('id IN(:...id)', { id: req.body.ids })
       .execute();
     return res.status(200).json({
       message: 'Commande librairie ont bien été restaurés.',

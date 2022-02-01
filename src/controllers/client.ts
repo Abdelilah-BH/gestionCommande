@@ -91,11 +91,7 @@ export const updateClient = async (req: Request, res: Response): Promise<Respons
 
 export const deleteClient = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Client)
-      .createQueryBuilder()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .delete()
-      .execute();
+    getRepository(Client).createQueryBuilder().where('id IN(:...id)', { id: req.body.ids }).delete().execute();
     return res.status(200).json({
       message: 'Client est bien supprimé définitivement.',
     });
@@ -108,11 +104,7 @@ export const deleteClient = async (req: Request, res: Response): Promise<Respons
 
 export const softDeleteClient = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Client)
-      .createQueryBuilder()
-      .softDelete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Client).createQueryBuilder().softDelete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Client est bien supprimé.',
     });
@@ -126,11 +118,7 @@ export const softDeleteClient = async (req: Request, res: Response): Promise<Res
 
 export const restoreSoftDeleteClient = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Client)
-      .createQueryBuilder()
-      .restore()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Client).createQueryBuilder().restore().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Client ont bien été restaurés.',
     });

@@ -92,11 +92,7 @@ export const updateLibrairie = async (req: Request, res: Response): Promise<Resp
 
 export const deleteLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Librairie)
-      .createQueryBuilder()
-      .delete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Librairie).createQueryBuilder().delete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Librairie est bien supprimé définitivement.',
     });
@@ -109,11 +105,7 @@ export const deleteLibrairie = async (req: Request, res: Response): Promise<Resp
 
 export const softDeleteLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Librairie)
-      .createQueryBuilder()
-      .softDelete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Librairie).createQueryBuilder().softDelete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Librairie est bien supprimé.',
     });
@@ -127,11 +119,7 @@ export const softDeleteLibrairie = async (req: Request, res: Response): Promise<
 
 export const restoreSoftDeleteLibrairie = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(Librairie)
-      .createQueryBuilder()
-      .restore()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(Librairie).createQueryBuilder().restore().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Librairie ont bien été restaurés.',
     });

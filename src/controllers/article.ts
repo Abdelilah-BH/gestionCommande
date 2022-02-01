@@ -92,11 +92,7 @@ export const updateArticle = async (req: Request, res: Response): Promise<Respon
 
 export const deleteArticle = async (req: Request, res: Response): Promise<Response> => {
   try {
-    await getRepository(Article)
-      .createQueryBuilder()
-      .delete()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    await getRepository(Article).createQueryBuilder().delete().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: `Article est bien supprimé définitivement.`,
     });
@@ -109,10 +105,11 @@ export const deleteArticle = async (req: Request, res: Response): Promise<Respon
 
 export const softDeleteArticle = async (req: Request, res: Response): Promise<Response> => {
   try {
+    console.log({ ids: req.body.ids });
     await getRepository(Article)
       .createQueryBuilder()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
       .softDelete()
+      .where('id IN(:...id)', { id: req.body.ids })
       .execute();
     return res.status(200).json({
       message: 'Article est bien supprimé.',
@@ -127,11 +124,7 @@ export const softDeleteArticle = async (req: Request, res: Response): Promise<Re
 
 export const restoreSoftDeleteArticle = async (req: Request, res: Response): Promise<Response> => {
   try {
-    await getRepository(Article)
-      .createQueryBuilder()
-      .restore()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    await getRepository(Article).createQueryBuilder().restore().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: "L'article ont bien été restaurés.",
     });

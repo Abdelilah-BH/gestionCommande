@@ -91,11 +91,7 @@ export const updateCommandeClient = async (req: Request, res: Response): Promise
 
 export const deleteCommandeClient = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(CommandeClient)
-      .createQueryBuilder()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .delete()
-      .execute();
+    getRepository(CommandeClient).createQueryBuilder().where('id IN(:...id)', { id: req.body.ids }).delete().execute();
     return res.status(200).json({
       message: 'CommandeClient est bien supprimé définitivement.',
     });
@@ -110,7 +106,7 @@ export const softDeleteCommandeClient = async (req: Request, res: Response): Pro
   try {
     getRepository(CommandeClient)
       .createQueryBuilder()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
+      .where('id IN(:...id)', { id: req.body.ids })
       .softDelete()
       .execute();
     return res.status(200).json({
@@ -126,11 +122,7 @@ export const softDeleteCommandeClient = async (req: Request, res: Response): Pro
 
 export const restoreSoftDeleteCommandeClient = async (req: Request, res: Response): Promise<Response> => {
   try {
-    getRepository(CommandeClient)
-      .createQueryBuilder()
-      .restore()
-      .where('id IN(:...id)', { id: JSON.parse(req.body.ids) })
-      .execute();
+    getRepository(CommandeClient).createQueryBuilder().restore().where('id IN(:...id)', { id: req.body.ids }).execute();
     return res.status(200).json({
       message: 'Commande client ont bien été restaurés.',
     });
