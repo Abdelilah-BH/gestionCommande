@@ -25,6 +25,6 @@ export const getDataByPagination = async ({
     order: { cree_le: 'DESC' },
     where: where,
   });
-  const count = await entity.count();
+  const count = await entity.count({ withDeleted: withDeleted, where: where });
   return { data, count };
 };
